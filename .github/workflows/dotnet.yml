@@ -1,0 +1,28 @@
+name: .NET CI  # Название workflow
+
+on:
+  push:        # Запускать workflow при пуше в ветку main
+    branches: [ "main" ]
+  pull_request: # Запускать workflow при создании pull request в ветку main
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Выбираем виртуальную машину с Ubuntu для выполнения шагов
+
+    steps:
+    - uses: actions/checkout@v5  # Клонирование кода репозитория
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v5  # Установка .NET SDK
+      with:
+        dotnet-version: '8.0.x'  # Версия .NET SDK
+
+    - name: Restore dependencies
+      run: dotnet restore  # Восстановление зависимостей проекта
+
+    - name: Build
+      run: dotnet build --no-restore  # Компиляция проекта без повторного восстановления зависимостей
+
+    - name: Test
+      run: dotnet test --no-build --verbosity normal  # Запуск модульных тестов
