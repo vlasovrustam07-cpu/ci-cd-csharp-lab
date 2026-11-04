@@ -16,5 +16,15 @@ namespace CalculatorApp
         {
             return a * b;
         }
+
+        public double Divide(int a, int b)
+        {
+            if (b == 0)
+            {
+                throw new DivideByZeroException("Деление на ноль невозможно.");
+            }
+
+            return (double)a / b;
+        }
     }
 }
