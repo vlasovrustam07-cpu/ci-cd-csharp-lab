@@ -26,5 +26,19 @@ namespace CalculatorApp.Tests
             int result = calc.Add(a, b);
             Assert.Equal(expected, result);
         }
+
+        // Задача #3: тест метода Subtract
+        [Theory]
+        [InlineData(5, 3, 2)]
+        [InlineData(3, 5, -2)]
+        [InlineData(-4, -6, 2)]
+        [InlineData(0, 7, -7)]
+        [InlineData(10, 0, 10)]
+        public void Subtract_ReturnsCorrectDifference(int a, int b, int expected)
+        {
+            Calculator calc = new Calculator();
+            int result = calc.Subtract(a, b);
+            Assert.Equal(expected, result);
+        }
     }
 }
