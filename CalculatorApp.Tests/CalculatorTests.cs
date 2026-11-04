@@ -40,5 +40,19 @@ namespace CalculatorApp.Tests
             int result = calc.Subtract(a, b);
             Assert.Equal(expected, result);
         }
+
+        // Задача #4: тест метода Multiply
+        [Theory]
+        [InlineData(4, 5, 20)]
+        [InlineData(-3, 6, -18)]
+        [InlineData(-4, -5, 20)]
+        [InlineData(0, 99, 0)]
+        [InlineData(1, -7, -7)]
+        public void Multiply_ReturnsCorrectProduct(int a, int b, int expected)
+        {
+            Calculator calc = new Calculator();
+            int result = calc.Multiply(a, b);
+            Assert.Equal(expected, result);
+        }
     }
 }
