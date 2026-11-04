@@ -54,5 +54,26 @@ namespace CalculatorApp.Tests
             int result = calc.Multiply(a, b);
             Assert.Equal(expected, result);
         }
+
+        // Задача #5: тесты метода Divide
+        [Theory]
+        [InlineData(10, 2, 5.0)]
+        [InlineData(7, 2, 3.5)]
+        [InlineData(-9, 3, -3.0)]
+        [InlineData(0, 5, 0.0)]
+        [InlineData(1, 3, 0.333333)]
+        public void Divide_ReturnsCorrectQuotient(int a, int b, double expected)
+        {
+            Calculator calc = new Calculator();
+            double result = calc.Divide(a, b);
+            Assert.Equal(expected, result, 6);
+        }
+
+        [Fact]
+        public void Divide_ByZero_ThrowsDivideByZeroException()
+        {
+            Calculator calc = new Calculator();
+            Assert.Throws<DivideByZeroException>(() => calc.Divide(5, 0));
+        }
     }
 }
